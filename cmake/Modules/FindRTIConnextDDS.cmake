@@ -30,6 +30,7 @@
 # - transport_tcp
 # - transport_tls
 # - transport_wan
+# - real_time_wan_transport
 # - recording_service
 # - cloud_discovery_service
 # - persistence_service
@@ -1858,6 +1859,23 @@ if(transport_wan IN_LIST RTIConnextDDS_FIND_COMPONENTS)
 endif()
 
 #####################################################################
+# Real-Time WAN Transport Library Component Variables               #
+#####################################################################
+if(real_time_wan_transport IN_LIST RTIConnextDDS_FIND_COMPONENTS)
+    # Find all flavors of nddsrwt
+    set(real_time_wan_transport_libs
+        "nddsrwt"
+    )
+    get_all_library_variables("${real_time_wan_transport_libs}" "REAL_TIME_TRANSPORT_WAN")
+
+    if(REAL_TIME_TRANSPORT_WAN_FOUND)
+        set(RTIConnextDDS_real_time_wan_transport_FOUND TRUE)
+    else()
+        set(RTIConnextDDS_real_time_wan_transport_FOUND FALSE)
+    endif()
+endif()
+
+#####################################################################
 # Recording Service API Component Variables                         #
 #####################################################################
 if(recording_service IN_LIST RTIConnextDDS_FIND_COMPONENTS)
@@ -2331,6 +2349,11 @@ if(RTIConnextDDS_FOUND)
             RTIConnextDDS::c_api
     )
 
+    # Real-time WAN Transport
+    create_connext_imported_target(
+        TARGET "real_time_wan_transport"
+        VAR "REAL_TIME_TRANSPORT_WAN"
+    )
 
     ######################## Low bandwidth plugins #########################
     # Discovery Static
