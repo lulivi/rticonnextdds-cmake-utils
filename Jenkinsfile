@@ -74,9 +74,7 @@ pipeline {
                 label 'docker'
             }
             steps {
-                checkoutCommunityRepoBranch(
-                    'rticonnextdds-cmake-utils', env.BRANCH_NAME
-                )
+                checkoutCommunityCMakeUtilsBranch(env.BRANCH_NAME)
                 script {
                     CONNEXT_VERSIONS.addAll(
                         readYaml(

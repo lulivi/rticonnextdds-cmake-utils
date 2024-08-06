@@ -119,9 +119,7 @@ pipeline {
                 label 'docker'
             }
             steps {
-                checkoutCommunityRepoBranch(
-                    'rticonnextdds-cmake-utils', params.CMAKE_UTILS_REPOSITORY_BRANCH
-                )
+                checkoutCommunityCMakeUtilsBranch(params.CMAKE_UTILS_REPOSITORY_BRANCH)
                 script {
                     ARCHITECTURE_MAP = readYaml(
                         file: "${env.WORKSPACE}/resources/ci/config.yaml"

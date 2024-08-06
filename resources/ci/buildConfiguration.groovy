@@ -41,6 +41,7 @@ void applyExamplesRepoPatch(
         examplesRepoRoot,
     )
 }
+
 /**
  * Obtain the reference branch name for the publishIssues function.
  *
@@ -114,16 +115,9 @@ pipeline {
                     )
                     PIPELINE_INFO.staticAnalysisDir = "${env.WORKSPACE}/static_analysis_report"
                 }
-                checkoutCommunityRepoBranch(
-                    'rticonnextdds-examples',
-                    params.EXAMPLES_REPOSITORY_BRANCH,
-                    true,
-                )
+                checkoutCommunityExamplesBranch(params.EXAMPLES_REPOSITORY_BRANCH, true)
                 dir(PIPELINE_INFO.cmakeUtilsRepoDir) {
-                    checkoutCommunityRepoBranch(
-                        'rticonnextdds-cmake-utils',
-                        params.CMAKE_UTILS_REPOSITORY_BRANCH,
-                    )
+                    checkoutCommunityCMakeUtilsBranch(params.CMAKE_UTILS_REPOSITORY_BRANCH)
                 }
                 applyExamplesRepoPatch(
                     PIPELINE_INFO.cmakeUtilsRepoDir,
