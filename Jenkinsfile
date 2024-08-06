@@ -10,6 +10,8 @@
  * to use the software.
  */
 
+@Library('rticommunity-jenkins-pipelines@feature/INSTALL-945') _
+
 /**
  * List of Connext versions that will be tested (the versions are the branch names of the
  * rticonnextdds-examples repository)

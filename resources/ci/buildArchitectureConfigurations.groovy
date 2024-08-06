@@ -10,6 +10,8 @@
  * to use the software.
  */
 
+@Library('rticommunity-jenkins-pipelines@feature/INSTALL-945') _
+
 /**
  * Map of architectures that will be tested for a single Connext version.
  */

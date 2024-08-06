@@ -10,7 +10,7 @@
  * to use the software.
  */
 
-@Library('rticommunity-jenkins-pipelines@feature/INSTALL-1063') _
+@Library('rticommunity-jenkins-pipelines@feature/INSTALL-945') _
 
 /**
  * Hold information about the pipeline. E.g.: cmakeUtilsRepoDir, cmakeUtilsDockerDir,
