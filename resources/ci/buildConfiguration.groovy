@@ -36,7 +36,7 @@ void applyExamplesRepoPatch(
     ]
     String selectedPatch = patches[examplesRepoBranch] ?: 'submodule'
 
-    load("${cmakeUtilsRepoRoot}/resources/ci/patches/${selectedPatch}Patch.groovy").apply(
+    load(path.join("${cmakeUtilsRepoRoot}", 'resources', 'ci', 'patches', "${selectedPatch}Patch.groovy")).apply(
         cmakeUtilsRepoRoot,
         examplesRepoRoot,
     )
@@ -110,10 +110,10 @@ pipeline {
             steps {
                 script {
                     PIPELINE_INFO.cmakeUtilsRepoDir = "${env.WORKSPACE}/cmake-utils"
-                    PIPELINE_INFO.cmakeUtilsDockerDir = (
-                        "${PIPELINE_INFO.cmakeUtilsRepoDir}/resources/ci/docker/"
+                    PIPELINE_INFO.cmakeUtilsDockerDir = path.join(
+                        "${PIPELINE_INFO.cmakeUtilsRepoDir}", 'resources', 'ci', 'docker'
                     )
-                    PIPELINE_INFO.staticAnalysisDir = "${env.WORKSPACE}/static_analysis_report"
+                    PIPELINE_INFO.staticAnalysisDir = path.join("${env.WORKSPACE}", 'static_analysis_report')
                 }
                 checkoutCommunityExamplesBranch(params.EXAMPLES_REPOSITORY_BRANCH, true)
                 dir(PIPELINE_INFO.cmakeUtilsRepoDir) {

@@ -78,7 +78,7 @@ pipeline {
                 script {
                     CONNEXT_VERSIONS.addAll(
                         readYaml(
-                            file: "${env.WORKSPACE}/resources/ci/config.yaml"
+                            file: path.join("${env.WORKSPACE}", 'resources', 'ci', 'config.yaml')
                         ).versions.keySet()
                     )
                 }

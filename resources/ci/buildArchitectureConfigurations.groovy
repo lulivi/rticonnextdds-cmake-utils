@@ -122,7 +122,7 @@ pipeline {
                 checkoutCommunityCMakeUtilsBranch(params.CMAKE_UTILS_REPOSITORY_BRANCH)
                 script {
                     ARCHITECTURE_MAP = readYaml(
-                        file: "${env.WORKSPACE}/resources/ci/config.yaml"
+                        file: path.join("${env.WORKSPACE}", 'resources', 'ci', 'config.yaml')
                     ).versions[params.EXAMPLES_REPOSITORY_BRANCH] ?: [:]
                 }
             }
