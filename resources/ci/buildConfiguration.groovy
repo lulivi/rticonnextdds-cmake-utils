@@ -35,14 +35,14 @@ void applyExamplesRepoPatch(
         'release/6.1.2': '6.1.2'
     ]
     String selectedPatch = patches[examplesRepoBranch] ?: 'submodule'
+    String patchScript = pathUtils.join(
+        cmakeUtilsRepoRoot, 'resources', 'ci', 'patches', "${selectedPatch}.py"
+    )
 
-    load(
-        pathUtils.join(
-            cmakeUtilsRepoRoot, 'resources', 'ci', 'patches', "${selectedPatch}Patch.groovy"
-        )
-    ).apply(
-        cmakeUtilsRepoRoot,
-        examplesRepoRoot,
+    command.run(
+        "${pythonExecutable()} ${patchScript}"
+        + " --cmake-utils-root ${cmakeUtilsRepoRoot}"
+        + " --examples-root ${examplesRepoRoot}"
     )
 }
 

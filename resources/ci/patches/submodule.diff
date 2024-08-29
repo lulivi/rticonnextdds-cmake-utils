@@ -1,0 +1,22 @@
+diff --git a/resources/cmake/Modules/ConnextDdsConfigureCmakeUtils.cmake b/resources/cmake/Modules/ConnextDdsConfigureCmakeUtils.cmake
+index 8bbf6632..12d02447 100644
+--- a/resources/cmake/Modules/ConnextDdsConfigureCmakeUtils.cmake
++++ b/resources/cmake/Modules/ConnextDdsConfigureCmakeUtils.cmake
+@@ -65,8 +65,16 @@ function(connextdds_configure_cmake_utils)
+         ERROR_STRIP_TRAILING_WHITESPACE
+     )
+ 
++    # The submodule is populated.
++    if(EXISTS "${CONNEXTDDS_CMAKE_UTILS_DIR}/cmake/Modules/FindRTIConnextDDS.cmake")
++        message(STATUS
++            "Found files in the submodule directory"
++            " ${CONNEXTDDS_CMAKE_UTILS_DIR}/resources/cmake/rticonnextdds-cmake-utils."
++            " Please ensure it is properly updated according to the"
++            " rticonnextdds-examples branch."
++        )
+     # This is a git repository and the submodule is not initialized.
+-    if(git_submodule_status_out AND git_submodule_status_out MATCHES "^-")
++    elseif(git_submodule_status_out AND git_submodule_status_out MATCHES "^-")
+         message(FATAL_ERROR
+             "The rticonnextdds-cmake-utils submodule is yet not configured,"
+             " please, run the following command in order to clone it from the "
